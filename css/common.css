@@ -1,0 +1,26 @@
+.idiom-hint {
+    background: rgba(0, 0, 0, 0.8);
+    color: white;
+    padding: 15px;
+    border-radius: 5px;
+    max-width: 300px;
+    z-index: 1000;
+    font-family: 'Inconsolata', monospace;
+}
+
+.idiom-hint h3 {
+    color: #cf2118;
+    margin: 0 0 10px 0;
+    font-size: 18px;
+}
+
+.idiom-hint p {
+    margin: 0;
+    font-size: 14px;
+}
+
+.highlighted-idiom {
+    color: #cf2118;
+    text-decoration: underline;
+    cursor: help;
+}

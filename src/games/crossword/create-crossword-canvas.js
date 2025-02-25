@@ -1,5 +1,6 @@
 import checkCrossword from './check-crossword.js';
 import saveUser from '../../functions/saveUser.js';
+import loadIdioms from '../../functions/load-idioms.js';
 import allGames from '../all-games-list.js';
 
 function createCrosswordCanvas(gameSection, currentLocation, gameOutcome, user, description, prompt) {
@@ -41,6 +42,8 @@ function createCrosswordCanvas(gameSection, currentLocation, gameOutcome, user, 
     
     let wrongGuesses = 0;
 
+    loadIdioms(descriptionP);
+
     crosswordForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -60,6 +63,7 @@ function createCrosswordCanvas(gameSection, currentLocation, gameOutcome, user, 
             user.daysLeft--;
             saveUser(user);
             submitButton.hidden = true;
+            loadIdioms(descriptionP);
         }  
         
         if(wrongGuesses === 3) {

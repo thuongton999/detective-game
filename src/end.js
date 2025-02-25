@@ -1,4 +1,5 @@
 import loadUser from '../src/functions/loadUser.js';
+import loadIdioms from './functions/load-idioms.js';
 const results = document.getElementById('results');
 
 const soundtrack = new Audio('../assets/audio/end.mp3');
@@ -13,3 +14,5 @@ if(user.daysLeft === 0) {
 } else {
     results.textContent = 'The glass eyed man reaches you before you can get enough bullets in him. You two tussle but you\'re too weak from the blackjack you took to the head earlier. He knocks you out and when you wake up you are in a cold jail cell. The police buy his story and it looks like this is your new home...';
 }
+
+loadIdioms(results);

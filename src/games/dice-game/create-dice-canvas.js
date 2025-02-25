@@ -1,5 +1,6 @@
 import diceGame from './dice-game.js';
 import saveUser from '../../functions/saveUser.js';
+import loadIdioms from '../../functions/load-idioms.js';
 import allGames from '../all-games-list.js';
 
 function createDiceCanvas(gameSection, currentLocation, gameOutcome, user, description) {
@@ -9,7 +10,7 @@ function createDiceCanvas(gameSection, currentLocation, gameOutcome, user, descr
 
     const brake = document.createElement('br');
     description.appendChild(brake);
-    
+
     const instructions = document.createElement('p');
     instructions.textContent = allGames[0].description;
     description.appendChild(instructions);
@@ -68,9 +69,11 @@ function createDiceCanvas(gameSection, currentLocation, gameOutcome, user, descr
     mapAnchor.textContent = 'Return to Map';
     mapAnchor.id = 'map-anchor';
 
+    loadIdioms(descriptionP);
+
     let gamesLost = 0;
-    
-    playButton.addEventListener('click', function() {
+
+    playButton.addEventListener('click', function () {
 
         const diceSound = new Audio('../../../assets/audio/dice.mp3');
         diceSound.play();
@@ -87,7 +90,7 @@ function createDiceCanvas(gameSection, currentLocation, gameOutcome, user, descr
 
         resultMessage.textContent = gameResult.result;
 
-        if(gameResult.result === 'Player Wins!') {
+        if (gameResult.result === 'Player Wins!') {
             descriptionP.textContent = currentLocation.clue;
             descriptionP.appendChild(brake);
             descriptionP.appendChild(mapAnchor);
@@ -97,12 +100,13 @@ function createDiceCanvas(gameSection, currentLocation, gameOutcome, user, descr
             user.receivedClues++;
             user.daysLeft--;
             saveUser(user);
+            loadIdioms(descriptionP);
             playButton.hidden = true;
         } else {
             gamesLost++;
         }
-        
-        if(gamesLost === 3) {
+
+        if (gamesLost === 3) {
             playButton.hidden = true;
             const lossP = document.createElement('p');
             lossP.textContent = 'You\'ve lost the game and lost a day, return to the map';

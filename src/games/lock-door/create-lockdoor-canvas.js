@@ -1,6 +1,7 @@
 import saveUser from '../../functions/saveUser.js';
 import checkLock from './check-lock.js';
 import allGames from '../all-games-list.js';
+import loadIdioms from '../../functions/load-idioms.js';
 
 function createLockdoorCanvas(gameSection, currentLocation, gameOutcome, user, description, instructionSection, prompt) {
     const descriptionP = document.createElement('p');
@@ -70,6 +71,8 @@ function createLockdoorCanvas(gameSection, currentLocation, gameOutcome, user, d
     mapAnchor.textContent = 'Return to Map';
     mapAnchor.id = 'map-anchor';
 
+    loadIdioms(descriptionP);
+
     codeForm.addEventListener('submit', function(event) {
         event.preventDefault();
 
@@ -92,6 +95,8 @@ function createLockdoorCanvas(gameSection, currentLocation, gameOutcome, user, d
             continueButton.textContent = 'continue...';
             continueButton.href = './boss.html';
             descriptionP.appendChild(continueButton);
+
+            loadIdioms(descriptionP);
 
             window.setTimeout(goToBoss, 12000);
         }
